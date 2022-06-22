@@ -1,6 +1,6 @@
 {
   "name": "back-end-modulo6-saude-avancado",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "node ace serve --watch",
