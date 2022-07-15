@@ -14,7 +14,7 @@ schemes:
   - 'https'
   - 'http'
 paths:
-  /Doctor:
+  /api/v1/doctor:
     get:
       tags:
         - Doctor
@@ -47,7 +47,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /Doctor/{doctorId}:
+  /api/v1/doctor/{doctorId}:
     get:
       tags:
         - 'Doctor'
@@ -104,7 +104,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /User:
+  /api/v1/user:
     get:
       tags:
         - User
@@ -137,7 +137,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /User/{userId}:
+  /api/v1/user/{userId}:
     get:
       tags:
         - 'User'
@@ -194,7 +194,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /BloodType:
+  /api/v1/blood-types:
     get:
       tags:
         - BloodType
@@ -227,7 +227,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /BloodType/{bloodTypeId}:
+  /api/v1/blood-type/{bloodTypeId}:
     get:
       tags:
         - 'BloodType'
@@ -284,7 +284,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /MedicalHistory:
+  /api/v1/medical-history:
     get:
       tags:
         - MedicalHistory
@@ -317,7 +317,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /MedicalHistory/{medicalHistoryId}:
+  /api/v1/medical-history/{medicalHistoryId}:
     get:
       tags:
         - 'MedicalHistory'
@@ -374,7 +374,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /Allergy:
+  /api/v1/allergy:
     get:
       tags:
         - Allergy
@@ -407,7 +407,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /Allergy/{allergyId}:
+  /api/v1/allergy/{allergyId}:
     get:
       tags:
         - 'Allergy'
@@ -464,7 +464,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /Medicine:
+  /api/v1/medicine:
     get:
       tags:
         - Medicine
@@ -497,7 +497,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /Medicine/{medicineId}:
+  /api/v1/medicine/{medicineId}:
     get:
       tags:
         - 'Medicine'
@@ -554,7 +554,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /ExamSolicitation:
+  /api/v1/exam-solicitation:
     get:
       tags:
         - ExamSolicitation
@@ -587,7 +587,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /ExamSolicitation/{examSolicitationId}:
+  /api/v1/exam-solicitation/{examSolicitationId}:
     get:
       tags:
         - 'ExamSolicitation'
@@ -644,7 +644,7 @@ paths:
         '200':
           description: 'sucess'
   
-  /Exam:
+  /api/v1/exam:
     get:
       tags:
         - Exam
@@ -677,7 +677,7 @@ paths:
           '200':
             description: 'sucess'
           
-  /Exam/{examId}:
+  /api/v1/exam/{examId}:
     get:
       tags:
         - 'Exam'
@@ -734,7 +734,7 @@ paths:
         '200':
           description: 'sucess'
 
-  /ExamInfo:
+  /api/v1/exam-info:
     get:
       tags:
         - ExamInfo
@@ -767,7 +767,7 @@ paths:
           '200':
             description: 'sucess'
             
-  /ExamInfo/{examInfoId}:
+  /api/v1/exam-info/{examInfoId}:
     get:
       tags:
         - 'ExamInfo'
