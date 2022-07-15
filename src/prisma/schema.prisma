@@ -7,69 +7,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// createdAt        DateTime           @default(now())
-// updatedAt        DateTime           @default(now())
 model Doctor {
   id               Int                @id @default(autoincrement())
   name             String
   crm              String
   speciality       String
   ExamSolicitation ExamSolicitation[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
 }
 
 model User {
   id               Int                @id @default(autoincrement())
-  bithDate         DateTime
+  birthDate        DateTime
   name             String
-  sex              String
+  sex              SexEnum
   bloodType        BloodType          @relation(fields: [bloodTypeId], references: [id])
   bloodTypeId      Int
   medicalHistory   MedicalHistory[]
   medicalHistoryId Int
   medicines        Medicine[]
   allergies        Allergy[]
-  ExamSolicitation ExamSolicitation[]
+  examSolicitations ExamSolicitation[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
 }
 
 model BloodType {
-  id   Int             @id @default(autoincrement())
-  type BloodTypeEnum
-  rh   BloodTypeRhEnum
-  User User[]
+  id        Int             @id @default(autoincrement())
+  type      BloodTypeEnum
+  rh        BloodTypeRhEnum
+  User      User[]
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @default(now())
 }
 
 model MedicalHistory {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String
-  User        User?  @relation(fields: [userId], references: [id])
+  User        User?    @relation(fields: [userId], references: [id])
   userId      Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
 
 model Allergy {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String
-  User        User?  @relation(fields: [userId], references: [id])
+  User        User?    @relation(fields: [userId], references: [id])
   userId      Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
 
 model Medicine {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   description String
-  User        User?  @relation(fields: [userId], references: [id])
+  User        User?    @relation(fields: [userId], references: [id])
   userId      Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
 
 model ExamSolicitation {
-  id       Int    @id @default(autoincrement())
-  doctor   Doctor @relation(fields: [doctorId], references: [id])
-  doctorId Int
-  user     User   @relation(fields: [userId], references: [id])
-  userId   Int
-  exam     Exam   @relation(fields: [examId], references: [id])
-  examId   Int
+  id        Int      @id @default(autoincrement())
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  doctorId  Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  exam      Exam     @relation(fields: [examId], references: [id])
+  examId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 model Exam {
@@ -79,7 +91,9 @@ model Exam {
   result           String
   info             ExamInfo           @relation(fields: [examInfoId], references: [id])
   examInfoId       Int
-  ExamSolicitation ExamSolicitation[]
+  examSolicitation ExamSolicitation[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @default(now())
 }
 
 model ExamInfo {
@@ -93,7 +107,9 @@ model ExamInfo {
   normalValues   String
   interpretation String
   relatedExams   String[]
-  Exam           Exam[]
+  exam           Exam[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now())
 }
 
 enum SexEnum {
