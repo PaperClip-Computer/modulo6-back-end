@@ -21,14 +21,14 @@ model User {
   id               Int                @id @default(autoincrement())
   birthDate        DateTime
   name             String
-  sex              String
+  sex              SexEnum
   bloodType        BloodType          @relation(fields: [bloodTypeId], references: [id])
   bloodTypeId      Int
   medicalHistory   MedicalHistory[]
   medicalHistoryId Int
   medicines        Medicine[]
   allergies        Allergy[]
-  ExamSolicitation ExamSolicitation[]
+  examSolicitations ExamSolicitation[]
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @default(now())
 }
@@ -91,7 +91,7 @@ model Exam {
   result           String
   info             ExamInfo           @relation(fields: [examInfoId], references: [id])
   examInfoId       Int
-  ExamSolicitation ExamSolicitation[]
+  examSolicitation ExamSolicitation[]
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @default(now())
 }
@@ -107,11 +107,8 @@ model ExamInfo {
   normalValues   String
   interpretation String
   relatedExams   String[]
-  Exam           Exam[]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now())
+  exam           Exam[]
 }
-
 enum SexEnum {
   masc
   fem

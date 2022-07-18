@@ -1,0 +1,1036 @@
+swagger: '2.0'
+info:
+  description: 'Descrição'
+  version: '1.0.0'
+  title: 'Swagger Modulo 6'
+  termsOfService: 'http://swagger.io/terms/'
+  # contact:
+  #   email: 'email@email'
+  # license:
+  #   name: 'MIT'
+# host: 'localhost'
+basePath: '/api/v1'
+schemes:
+  - 'https'
+  - 'http'
+paths:
+  /api/v1/doctor:
+    get:
+      tags:
+        - Doctor
+      description: 'List of Doctors'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Doctor'
+    post:
+      tags:
+        - Doctor
+      summary: 'Add a new Doctor to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Doctor object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Doctor'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/doctor/{doctorId}:
+    get:
+      tags:
+        - 'Doctor'
+      summary: 'Find Doctor by ID'
+      description: 'Returns a single Doctor'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'doctorId'
+          in: 'path'
+          description: 'ID of Doctor to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/Doctor'
+    put:
+      tags:
+        - Doctor
+      summary: 'Update an existing Doctor'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Doctor object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Doctor'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'Doctor'
+      summary: 'Deletes a Doctor'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'doctorId'
+          in: 'path'
+          description: 'Doctor id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/user:
+    get:
+      tags:
+        - User
+      description: 'List of Users'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/User'
+    post:
+      tags:
+        - User
+      summary: 'Add a new User to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'User object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/user/{userId}:
+    get:
+      tags:
+        - 'User'
+      summary: 'Find User by ID'
+      description: 'Returns a single User'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'userId'
+          in: 'path'
+          description: 'ID of User to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/User'
+    put:
+      tags:
+        - User
+      summary: 'Update an existing User'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'User object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'User'
+      summary: 'Deletes a User'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'userId'
+          in: 'path'
+          description: 'User id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/blood-types:
+    get:
+      tags:
+        - BloodType
+      description: 'List of BloodTypes'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/BloodType'
+    post:
+      tags:
+        - BloodType
+      summary: 'Add a new BloodType to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'BloodType object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/BloodType'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/blood-type/{bloodTypeId}:
+    get:
+      tags:
+        - 'BloodType'
+      summary: 'Find BloodType by ID'
+      description: 'Returns a single BloodType'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'bloodTypeId'
+          in: 'path'
+          description: 'ID of BloodType to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/BloodType'
+    put:
+      tags:
+        - BloodType
+      summary: 'Update an existing BloodType'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'BloodType object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/BloodType'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'BloodType'
+      summary: 'Deletes a BloodType'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'bloodTypeId'
+          in: 'path'
+          description: 'BloodType id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/medical-history:
+    get:
+      tags:
+        - MedicalHistory
+      description: 'List of MedicalHistorys'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/MedicalHistory'
+    post:
+      tags:
+        - MedicalHistory
+      summary: 'Add a new MedicalHistory to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'MedicalHistory object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/MedicalHistory'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/medical-history/{medicalHistoryId}:
+    get:
+      tags:
+        - 'MedicalHistory'
+      summary: 'Find MedicalHistory by ID'
+      description: 'Returns a single MedicalHistory'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'medicalHistoryId'
+          in: 'path'
+          description: 'ID of MedicalHistory to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/MedicalHistory'
+    put:
+      tags:
+        - MedicalHistory
+      summary: 'Update an existing MedicalHistory'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'MedicalHistory object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/MedicalHistory'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'MedicalHistory'
+      summary: 'Deletes a MedicalHistory'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'medicalHistoryId'
+          in: 'path'
+          description: 'MedicalHistory id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/allergy:
+    get:
+      tags:
+        - Allergy
+      description: 'List of Allergys'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Allergy'
+    post:
+      tags:
+        - Allergy
+      summary: 'Add a new Allergy to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Allergy object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Allergy'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/allergy/{allergyId}:
+    get:
+      tags:
+        - 'Allergy'
+      summary: 'Find Allergy by ID'
+      description: 'Returns a single Allergy'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'allergyId'
+          in: 'path'
+          description: 'ID of Allergy to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/Allergy'
+    put:
+      tags:
+        - Allergy
+      summary: 'Update an existing Allergy'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Allergy object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Allergy'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'Allergy'
+      summary: 'Deletes a Allergy'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'allergyId'
+          in: 'path'
+          description: 'Allergy id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/medicine:
+    get:
+      tags:
+        - Medicine
+      description: 'List of Medicines'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Medicine'
+    post:
+      tags:
+        - Medicine
+      summary: 'Add a new Medicine to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Medicine object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Medicine'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/medicine/{medicineId}:
+    get:
+      tags:
+        - 'Medicine'
+      summary: 'Find Medicine by ID'
+      description: 'Returns a single Medicine'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'medicineId'
+          in: 'path'
+          description: 'ID of Medicine to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/Medicine'
+    put:
+      tags:
+        - Medicine
+      summary: 'Update an existing Medicine'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Medicine object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Medicine'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'Medicine'
+      summary: 'Deletes a Medicine'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'medicineId'
+          in: 'path'
+          description: 'Medicine id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/exam-solicitation:
+    get:
+      tags:
+        - ExamSolicitation
+      description: 'List of ExamSolicitations'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/ExamSolicitation'
+    post:
+      tags:
+        - ExamSolicitation
+      summary: 'Add a new ExamSolicitation to the store'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'ExamSolicitation object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/ExamSolicitation'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/exam-solicitation/{examSolicitationId}:
+    get:
+      tags:
+        - 'ExamSolicitation'
+      summary: 'Find ExamSolicitation by ID'
+      description: 'Returns a single ExamSolicitation'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'examSolicitationId'
+          in: 'path'
+          description: 'ID of ExamSolicitation to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/ExamSolicitation'
+    put:
+      tags:
+        - ExamSolicitation
+      summary: 'Update an existing ExamSolicitation'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'ExamSolicitation object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/ExamSolicitation'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'ExamSolicitation'
+      summary: 'Deletes a ExamSolicitation'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'examSolicitationId'
+          in: 'path'
+          description: 'ExamSolicitation id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+  
+  /api/v1/exam:
+    get:
+      tags:
+        - Exam
+      description: 'List of Exams'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/Exam'
+    post:
+        tags:
+          - Exam
+        summary: 'Add a new Exam to the store'
+        consumes:
+          - 'application/json'
+        produces:
+          - 'application/json'
+        parameters:
+          - in: 'body'
+            name: 'body'
+            description: 'Exam object that needs to be added to the store'
+            required: true
+            schema:
+              $ref: '#/definitions/Exam'
+        responses:
+          '200':
+            description: 'sucess'
+          
+  /api/v1/exam/{examId}:
+    get:
+      tags:
+        - 'Exam'
+      summary: 'Find Exam by ID'
+      description: 'Returns a single Exam'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'examId'
+          in: 'path'
+          description: 'ID of Exam to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/Exam'
+    put:
+      tags:
+        - Exam
+      summary: 'Update an existing Exam'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Exam object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/Exam'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'Exam'
+      summary: 'Deletes a Exam'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'examId'
+          in: 'path'
+          description: 'Exam id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+
+  /api/v1/exam-info:
+    get:
+      tags:
+        - ExamInfo
+      description: 'List of ExamInfos'
+      produces:
+        - 'application/json'
+      responses:
+        '200':
+          description: 'successful'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/ExamInfo'
+    post:
+        tags:
+          - ExamInfo
+        summary: 'Add a new ExamInfo to the store'
+        consumes:
+          - 'application/json'
+        produces:
+          - 'application/json'
+        parameters:
+          - in: 'body'
+            name: 'body'
+            description: 'ExamInfo object that needs to be added to the store'
+            required: true
+            schema:
+              $ref: '#/definitions/ExamInfo'
+        responses:
+          '200':
+            description: 'sucess'
+            
+  /api/v1/exam-info/{examInfoId}:
+    get:
+      tags:
+        - 'ExamInfo'
+      summary: 'Find ExamInfo by ID'
+      description: 'Returns a single ExamInfo'
+      produces:
+        - 'application/xml'
+        - 'application/json'
+      parameters:
+        - name: 'examInfoId'
+          in: 'path'
+          description: 'ID of ExamInfo to return'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/ExamInfo'
+    put:
+      tags:
+        - ExamInfo
+      summary: 'Update an existing ExamInfo'
+      consumes:
+        - 'application/json'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'ExamInfo object that needs to be added to the store'
+          required: true
+          schema:
+            $ref: '#/definitions/ExamInfo'
+      responses:
+        '200':
+          description: 'sucess'
+
+    delete:
+      tags:
+        - 'ExamInfo'
+      summary: 'Deletes a ExamInfo'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'examInfoId'
+          in: 'path'
+          description: 'ExamInfo id to delete'
+          required: true
+          type: 'integer'
+          format: 'int64'
+      responses:
+        '200':
+          description: 'sucess'
+        
+definitions:
+  Doctor:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      name:
+        type: 'string'
+      crm:
+        type: 'string'
+      especiality:
+        type: 'string'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  User:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      birthDate:
+        type: 'string'
+        format: 'date-time'
+      sex:
+        type: 'string'
+        enum:
+          - 'masc'
+          - 'fem'
+          - 'other'
+      bloodType:
+        $ref: '#definitions/BloodType'
+      medicines:
+        type: 'array'
+        $ref: '#definitions/Medicine'
+      medicalHistory:
+        type: 'array'
+        $ref: '#definitions/MedicalHistory'
+      allergies:
+        type: 'array'
+        $ref: '#definitions/Allergy'
+      examSolicitations:
+        type: 'array'
+        $ref: '#definitions/ExamSolicitation'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  BloodType:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      rh:
+        type: 'string'
+        enum:
+          - 'positive'
+          - 'negative'
+      type:
+        type: 'string'
+        enum:
+          - 'A'
+          - 'B'
+          - 'AB'
+          - 'O'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  MedicalHistory:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      name:
+        type: 'string'
+      description:
+        type: 'string'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  Allergy:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      name:
+        type: 'string'
+      description:
+        type: 'string'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  Medicine:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      name:
+        type: 'string'
+      description:
+        type: 'string'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  ExamSolicitation:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      doctor:
+        $ref: '#definitions/Doctor'
+      user:
+        $ref: '#definitions/User'
+      exam:
+        $ref: '#definitions/Exam'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  Exam:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      realizationDate:
+        type: 'string'
+        format: 'date-time'
+      resultDate:
+        type: 'string'
+        format: 'date-time'
+      result:
+        type: 'string'
+      info:
+        $ref: '#definitions/ExamInfo'
+      examSolicitation:
+        type: 'array'
+        $ref: '#definitions/ExamSolicitation'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
+
+  ExamInfo:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+        format: 'int64'
+      synonymy:
+        type: 'string'
+      material:
+        type: 'string'
+      conservation:
+        type: 'string'
+      preparation:
+        type: 'string'
+      method:
+        type: 'string'
+      interfering:
+        type: 'string'
+      normalValues:
+        type: 'string'
+      interpretation:
+        type: 'string'
+      relatedExams:
+        type: 'array'
+      exam:
+        type: 'array'
+        $ref: '#definitions/Exam'
+      createdAt:
+        type: 'string'
+        format: 'date-time'
+      updateddAt:
+        type: 'string'
+        format: 'date-time'
