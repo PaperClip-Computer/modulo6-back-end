@@ -29,44 +29,31 @@ Route.get('health', async ({ response }) => {
 })
 
 Route.get('/', async () => {
-  return { ok: 'Hello world' }
+  return { ok: 'modulo6' }
 })
 
-const userRoutes = () => {
-  Route.get('/users', 'UsersController.list')
-  Route.get('/users/:id', 'UsersController.get')
-  Route.post('/users', 'UsersController.post')
-  Route.put('/users/:id', 'UsersController.update')
-  Route.delete('/users/:id', 'UsersController.delete')
-}
+const rountesAndControllers = [
+  { route: 'user', controller: 'UsersController' },
+  { route: 'blood-type', controller: 'BloodTypeController' },
+  { route: 'exam', controller: 'ExamController' },
+  { route: 'exam-info', controller: 'ExamInfoController' },
+  { route: 'exam-solicitation', controller: 'ExamSolicitationController' },
+  { route: 'allergy', controller: 'AllergyController' },
+  { route: 'medicine', controller: 'MedicineController' },
+  { route: 'doctor', controller: 'DoctorController' },
+  { route: 'medical-history', controller: 'MedicalHistoryController' },
+]
 
-const bloodTypeRoutes = () => {
-  Route.get('/blood-types', 'BloodTypeController.list')
-  Route.get('/blood-types/:id', 'BloodTypeController.get')
-  Route.post('/blood-types', 'BloodTypeController.post')
-  Route.put('/blood-types/:id', 'BloodTypeController.update')
-  Route.delete('/blood-types/:id', 'BloodTypeController.delete')
-}
-
-const exam = () => {
-  Route.get('/examinfo', 'ExamController.list')
-  Route.get('/exam/:id', 'ExamController.get')
-  Route.post('/exam', 'ExamController.post')
-  Route.put('/exam/:id', 'ExamController.update')
-  Route.delete('/exam/:id', 'ExamController.delete')
-}
-
-const examInfo = () => {
-  Route.get('/exam-info', 'ExamInfoController.list')
-  Route.get('/exam-info/:id', 'ExamInfoController.get')
-  Route.post('/exam-info', 'ExamInfoController.post')
-  Route.put('/exam-info/:id', 'ExamInfoController.update')
-  Route.delete('/exam-info/:id', 'ExamInfoController.delete')
+const buildRoutes = () => {
+  rountesAndControllers.forEach(({ route, controller }) => {
+    Route.get(`/${route}`, `${controller}.list`)
+    Route.get(`/${route}/:id`, `${controller}.get`)
+    Route.post(`/${route}`, `${controller}.post`)
+    Route.put(`/${route}/:id`, `${controller}.update`)
+    Route.delete(`/${route}/:id`, `${controller}.delete`)
+  })
 }
 
 Route.group(() => {
-  userRoutes()
-  bloodTypeRoutes()
-  examInfo()
-  exam()
+  buildRoutes()
 }).prefix('/api/v1')
