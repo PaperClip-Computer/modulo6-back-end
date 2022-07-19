@@ -5,10 +5,20 @@ const prisma = new PrismaClient()
 
 export default class DoctorController {
   public async list({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const res = await prisma.doctor.findMany()
+    return response.json(res)
   }
+
   public async get({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const { id } = request.params()
+
+    const res = await prisma.doctor.findUnique({
+      where: {
+        id: Number(id),
+      },
+    })
+
+    return response.json(res)
   }
 
   public async post({ request, response }: HttpContextContract) {
@@ -23,9 +33,31 @@ export default class DoctorController {
   }
 
   public async update({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const { id } = request.params()
+
+    const res = await prisma.doctor.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        name: request.input('name'),
+        crm: request.input('crm'),
+        speciality: request.input('speciality'),
+      },
+    })
+
+    return response.json(res)
   }
+
   public async delete({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const { id } = request.params()
+
+    const res = await prisma.doctor.delete({
+      where: {
+        id: Number(id),
+      },
+    })
+
+    return response.json(res)
   }
 }

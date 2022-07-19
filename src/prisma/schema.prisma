@@ -18,19 +18,19 @@ model Doctor {
 }
 
 model User {
-  id               Int                @id @default(autoincrement())
-  birthDate        DateTime
-  name             String
-  sex              SexEnum
-  bloodType        BloodType          @relation(fields: [bloodTypeId], references: [id])
-  bloodTypeId      Int
-  medicalHistory   MedicalHistory[]
-  medicalHistoryId Int
-  medicines        Medicine[]
-  allergies        Allergy[]
+  id                Int                @id @default(autoincrement())
+  birthDate         DateTime
+  name              String
+  sex               SexEnum
+  bloodType         BloodType          @relation(fields: [bloodTypeId], references: [id])
+  bloodTypeId       Int
+  medicalHistory    MedicalHistory[]
+  medicalHistoryId  Int
+  medicines         Medicine[]
+  allergies         Allergy[]
   examSolicitations ExamSolicitation[]
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @default(now())
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @default(now())
 }
 
 model BloodType {
@@ -98,17 +98,18 @@ model Exam {
 
 model ExamInfo {
   id             Int      @id @default(autoincrement())
-  synonymy       String
-  material       String
-  conservation   String
-  preparation    String
-  method         String
-  interfering    String
-  normalValues   String
-  interpretation String
+  synonymy       String?
+  material       String?
+  conservation   String?
+  preparation    String?
+  method         String?
+  interfering    String?
+  normalValues   String?
+  interpretation String?
   relatedExams   String[]
   exam           Exam[]
 }
+
 enum SexEnum {
   masc
   fem

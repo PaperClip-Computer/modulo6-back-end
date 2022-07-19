@@ -1,24 +1,73 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class ExamInfoController {
   public async list({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const res = await prisma.examInfo.findMany()
+    return response.json(res)
   }
+
   public async get({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const { id } = request.params()
+
+    const res = await prisma.examInfo.findUnique({
+      where: {
+        id: Number(id),
+      },
+    })
+
+    return response.json(res)
   }
 
   public async post({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const res = await prisma.examInfo.create({
+      data: {
+        synonymy: request.input('synonymy'),
+        material: request.input('material'),
+        conservation: request.input('conservation'),
+        preparation: request.input('preparation'),
+        method: request.input('method'),
+        interfering: request.input('interfering'),
+        normalValues: request.input('normalValues'),
+        interpretation: request.input('interpretation'),
+        relatedExams: request.input('relatedExams'),
+      },
+    })
+    return response.json(res)
   }
 
   public async update({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const { id } = request.params()
+    const res = await prisma.examInfo.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        synonymy: request.input('synonymy'),
+        material: request.input('material'),
+        conservation: request.input('conservation'),
+        preparation: request.input('preparation'),
+        method: request.input('method'),
+        interfering: request.input('interfering'),
+        normalValues: request.input('normalValues'),
+        interpretation: request.input('interpretation'),
+        relatedExams: request.input('relatedExams'),
+      },
+    })
+    return response.json(res)
   }
+  
   public async delete({ request, response }: HttpContextContract) {
-    return response.json(null)
+    const { id } = request.params()
+
+    const res = await prisma.examInfo.delete({
+      where: {
+        id: Number(id),
+      },
+    })
+
+    return response.json(res)
   }
 }

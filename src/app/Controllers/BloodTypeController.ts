@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, Prisma, BloodTypeEnum, BloodTypeRhEnum } from '@prisma/client'
+import { PrismaClient, BloodTypeEnum, BloodTypeRhEnum } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -14,7 +14,7 @@ export default class BloodTypeController {
 
     const res = await prisma.bloodType.findUnique({
       where: {
-        id,
+        id: Number(id),
       },
     })
 
@@ -51,7 +51,7 @@ export default class BloodTypeController {
 
     const res = await prisma.bloodType.delete({
       where: {
-        id,
+        id: Number(id),
       },
     })
 

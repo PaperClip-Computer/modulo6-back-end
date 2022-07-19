@@ -48,7 +48,25 @@ const bloodTypeRoutes = () => {
   Route.delete('/blood-types/:id', 'BloodTypeController.delete')
 }
 
+const exam = () => {
+  Route.get('/examinfo', 'ExamController.list')
+  Route.get('/exam/:id', 'ExamController.get')
+  Route.post('/exam', 'ExamController.post')
+  Route.put('/exam/:id', 'ExamController.update')
+  Route.delete('/exam/:id', 'ExamController.delete')
+}
+
+const examInfo = () => {
+  Route.get('/exam-info', 'ExamInfoController.list')
+  Route.get('/exam-info/:id', 'ExamInfoController.get')
+  Route.post('/exam-info', 'ExamInfoController.post')
+  Route.put('/exam-info/:id', 'ExamInfoController.update')
+  Route.delete('/exam-info/:id', 'ExamInfoController.delete')
+}
+
 Route.group(() => {
   userRoutes()
   bloodTypeRoutes()
+  examInfo()
+  exam()
 }).prefix('/api/v1')

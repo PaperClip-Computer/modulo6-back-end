@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "ExamInfo" ALTER COLUMN "synonymy" DROP NOT NULL,
+ALTER COLUMN "material" DROP NOT NULL,
+ALTER COLUMN "conservation" DROP NOT NULL,
+ALTER COLUMN "preparation" DROP NOT NULL,
+ALTER COLUMN "method" DROP NOT NULL,
+ALTER COLUMN "interfering" DROP NOT NULL,
+ALTER COLUMN "normalValues" DROP NOT NULL,
+ALTER COLUMN "interpretation" DROP NOT NULL;
