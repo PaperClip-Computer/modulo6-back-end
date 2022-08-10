@@ -5,7 +5,8 @@ const prisma = new PrismaClient()
 
 export default class ExamController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.exam.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.exam.findMany({ orderBy, where: filter })
     return response.json(res)
   }
 

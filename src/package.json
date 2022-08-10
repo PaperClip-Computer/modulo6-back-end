@@ -9,6 +9,12 @@
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
+  "prisma": {
+    "seed": "ts-node-esm prisma/seed.ts"
+  },
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
   "eslintConfig": {
     "extends": [
       "plugin:adonis/typescriptApp",

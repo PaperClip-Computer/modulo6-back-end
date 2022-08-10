@@ -5,9 +5,11 @@ const prisma = new PrismaClient()
 
 export default class AllergyController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.allergy.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.allergy.findMany({ orderBy, where: filter })
     return response.json(res)
   }
+
   public async get({ request, response }: HttpContextContract) {
     const { id } = request.params()
 

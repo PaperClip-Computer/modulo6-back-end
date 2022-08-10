@@ -1,14 +1,17 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class MedicalHistoryController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.medicalHistory.findMany()
+    const { orderBy, filter } = request.qs()
+    console.log(JSON.parse(filter))
+
+    const res = await prisma.medicalHistory.findMany({ orderBy, where: JSON.parse(filter) })
     return response.json(res)
   }
-  
+
   public async get({ request, response }: HttpContextContract) {
     const { id } = request.params()
 
@@ -26,7 +29,6 @@ export default class MedicalHistoryController {
       data: {
         name: request.input('name'),
         description: request.input('description'),
-        userId: request.input('userId'),
       },
     })
     return response.json(res)

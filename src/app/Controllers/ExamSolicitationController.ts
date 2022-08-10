@@ -1,14 +1,15 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class ExamSolicitationController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.examSolicitation.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.examSolicitation.findMany({ orderBy, where: filter })
     return response.json(res)
   }
-  
+
   public async get({ request, response }: HttpContextContract) {
     const { id } = request.params()
 

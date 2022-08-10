@@ -1,11 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, BloodTypeEnum, BloodTypeRhEnum } from '@prisma/client'
+import { BloodTypeEnum, BloodTypeRhEnum, PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class BloodTypeController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.bloodType.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.bloodType.findMany({ orderBy, where: filter })
     return response.json(res)
   }
 

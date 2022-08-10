@@ -1,11 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class DoctorController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.doctor.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.doctor.findMany({ orderBy, where: filter })
     return response.json(res)
   }
 

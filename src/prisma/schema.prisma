@@ -25,7 +25,6 @@ model User {
   bloodType         BloodType          @relation(fields: [bloodTypeId], references: [id])
   bloodTypeId       Int
   medicalHistory    MedicalHistory[]
-  medicalHistoryId  Int
   medicines         Medicine[]
   allergies         Allergy[]
   examSolicitations ExamSolicitation[]
@@ -46,10 +45,10 @@ model MedicalHistory {
   id          Int      @id @default(autoincrement())
   name        String
   description String
-  User        User?    @relation(fields: [userId], references: [id])
-  userId      Int?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      Int?
 }
 
 model Allergy {
@@ -86,8 +85,8 @@ model ExamSolicitation {
 
 model Exam {
   id               Int                @id @default(autoincrement())
-  realizationDate  DateTime
-  resultDate       DateTime
+  realizationDate  DateTime?
+  resultDate       DateTime?
   result           String
   info             ExamInfo           @relation(fields: [examInfoId], references: [id])
   examInfoId       Int
@@ -97,7 +96,8 @@ model Exam {
 }
 
 model ExamInfo {
-  id             Int      @id @default(autoincrement())
+  id             Int     @id @default(autoincrement())
+  name           String
   synonymy       String?
   material       String?
   conservation   String?
@@ -106,7 +106,7 @@ model ExamInfo {
   interfering    String?
   normalValues   String?
   interpretation String?
-  relatedExams   String[]
+  relatedExams   String?
   exam           Exam[]
 }
 

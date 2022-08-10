@@ -5,7 +5,8 @@ const prisma = new PrismaClient()
 
 export default class ExamInfoController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.examInfo.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.examInfo.findMany({ orderBy, where: filter })
     return response.json(res)
   }
 
@@ -24,6 +25,7 @@ export default class ExamInfoController {
   public async post({ request, response }: HttpContextContract) {
     const res = await prisma.examInfo.create({
       data: {
+        name: request.input('name'),
         synonymy: request.input('synonymy'),
         material: request.input('material'),
         conservation: request.input('conservation'),
@@ -58,7 +60,7 @@ export default class ExamInfoController {
     })
     return response.json(res)
   }
-  
+
   public async delete({ request, response }: HttpContextContract) {
     const { id } = request.params()
 

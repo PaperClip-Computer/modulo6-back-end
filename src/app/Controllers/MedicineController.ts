@@ -5,7 +5,8 @@ const prisma = new PrismaClient()
 
 export default class MedicineController {
   public async list({ request, response }: HttpContextContract) {
-    const res = await prisma.medicine.findMany()
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.medicine.findMany({ orderBy, where: filter })
     return response.json(res)
   }
   public async get({ request, response }: HttpContextContract) {
