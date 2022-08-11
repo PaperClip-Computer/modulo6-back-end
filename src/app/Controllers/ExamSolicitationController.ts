@@ -4,8 +4,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default class ExamSolicitationController {
-  public async list({ response }: HttpContextContract) {
-    const res = await prisma.examSolicitation.findMany()
+  public async list({ request, response }: HttpContextContract) {
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.examSolicitation.findMany({ orderBy, where: filter })
     return response.json(res)
   }
 
@@ -15,6 +16,10 @@ export default class ExamSolicitationController {
     const res = await prisma.examSolicitation.findUnique({
       where: {
         id: Number(id),
+      },
+      include: {
+        exam: true,
+        examResult: true,
       },
     })
 
@@ -40,9 +45,11 @@ export default class ExamSolicitationController {
         id: Number(id),
       },
       data: {
-        doctorId: request.input('doctorId'),
-        userId: request.input('userId'),
-        examId: request.input('examId'),
+        examResult: {
+          connect: {
+            id: request.input('examResultId'),
+          },
+        },
       },
     })
 

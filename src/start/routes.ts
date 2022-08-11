@@ -18,8 +18,8 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
 import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
+import Route from '@ioc:Adonis/Core/Route'
 
 // Rota pra verfificar as conexões com o banco de dados
 Route.get('health', async ({ response }) => {
@@ -34,14 +34,10 @@ Route.get('/', async () => {
 
 const rountesAndControllers = [
   { route: 'user', controller: 'UsersController' },
-  { route: 'blood-type', controller: 'BloodTypeController' },
   { route: 'exam', controller: 'ExamController' },
-  { route: 'exam-info', controller: 'ExamInfoController' },
+  { route: 'exam-result', controller: 'ExamResultController' },
   { route: 'exam-solicitation', controller: 'ExamSolicitationController' },
-  { route: 'allergy', controller: 'AllergyController' },
-  { route: 'medicine', controller: 'MedicineController' },
   { route: 'doctor', controller: 'DoctorController' },
-  { route: 'medical-history', controller: 'MedicalHistoryController' },
 ]
 
 const buildRoutes = () => {

@@ -1,24 +1,25 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  db-modulo6:
-    image: postgres
-    container_name: db-modulo6
-    restart: always
+  app:
+    image: node:lts
+    working_dir: /node/app
+    tty: true
+    command: tail -f /dev/null
+    entrypoint: ./entrypoint.sh
     volumes:
-      - db-modulo6:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: modulo6
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      - ./:/node/app
     ports:
-      - '5432:5432'
+      - ${PORT:-3333}:3333
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
-volumes:
-  db-modulo6:
-    external: false
-networks:
-  modulo6:
-    driver: bridge
-  default:
-    name: modulo6
+  pg:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB_NAME}
+    ports:
+      - ${PG_PORT:-5432}:5432

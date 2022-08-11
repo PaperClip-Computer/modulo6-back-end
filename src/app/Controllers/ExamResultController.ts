@@ -3,15 +3,17 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-export default class MedicineController {
-  public async list({ response }: HttpContextContract) {
-    const res = await prisma.medicine.findMany()
+export default class ExamController {
+  public async list({ request, response }: HttpContextContract) {
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.examResult.findMany({ orderBy, where: filter })
     return response.json(res)
   }
+
   public async get({ request, response }: HttpContextContract) {
     const { id } = request.params()
 
-    const res = await prisma.medicine.findUnique({
+    const res = await prisma.examResult.findUnique({
       where: {
         id: Number(id),
       },
@@ -21,11 +23,12 @@ export default class MedicineController {
   }
 
   public async post({ request, response }: HttpContextContract) {
-    const res = await prisma.medicine.create({
+    const res = await prisma.examResult.create({
       data: {
-        name: request.input('name'),
-        description: request.input('description'),
-        userId: request.input('userId'),
+        measureDate: request.input('measureDate'),
+        resultDate: request.input('resultDate'),
+        result: request.input('result'),
+        examSolicitationId: request.input('examSolicitationId'),
       },
     })
     return response.json(res)
@@ -34,23 +37,25 @@ export default class MedicineController {
   public async update({ request, response }: HttpContextContract) {
     const { id } = request.params()
 
-    const res = await prisma.medicine.update({
+    const res = await prisma.examResult.update({
       where: {
         id: Number(id),
       },
       data: {
-        name: request.input('name'),
-        description: request.input('description'),
-        userId: request.input('userId'),
+        measureDate: request.input('measureDate'),
+        resultDate: request.input('resultDate'),
+        result: request.input('result'),
+        examSolicitationId: request.input('examSolicitationId'),
       },
     })
 
     return response.json(res)
   }
+
   public async delete({ request, response }: HttpContextContract) {
     const { id } = request.params()
 
-    const res = await prisma.medicine.delete({
+    const res = await prisma.examResult.delete({
       where: {
         id: Number(id),
       },

@@ -4,8 +4,9 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default class DoctorController {
-  public async list({ response }: HttpContextContract) {
-    const res = await prisma.doctor.findMany()
+  public async list({ request, response }: HttpContextContract) {
+    const { orderBy, filter } = request.qs()
+    const res = await prisma.doctor.findMany({ orderBy, where: filter })
     return response.json(res)
   }
 
@@ -15,6 +16,9 @@ export default class DoctorController {
     const res = await prisma.doctor.findUnique({
       where: {
         id: Number(id),
+      },
+      include: {
+        pacients: true,
       },
     })
 

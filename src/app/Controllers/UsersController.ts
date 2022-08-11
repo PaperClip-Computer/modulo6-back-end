@@ -1,11 +1,26 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, SexEnum } from '@prisma/client'
+import { BloodTypeEnum, PrismaClient, SexEnum } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class UsersController {
-  public async list({ response }: HttpContextContract) {
-    const res = await prisma.user.findMany()
+  public async list({ request, response }: HttpContextContract) {
+    const { name, cpf } = request.qs()
+
+    const res = prisma.user.findMany({
+      where: {
+        OR: {
+          name: {
+            startsWith: name,
+            mode: 'insensitive',
+          },
+          cpf: {
+            equals: cpf,
+          },
+        },
+      },
+    })
+
     return response.json(res)
   }
 
@@ -15,6 +30,15 @@ export default class UsersController {
     const res = await prisma.user.findUnique({
       where: {
         id: Number(id),
+      },
+      include: {
+        doctor: true,
+        examSolicitations: {
+          include: {
+            examResult: true,
+            exam: true,
+          },
+        },
       },
     })
 
@@ -26,11 +50,13 @@ export default class UsersController {
       data: {
         birthDate: request.input('birthDate'),
         name: request.input('name'),
+        cpf: request.input('cpf'),
         sex: request.input('sex') as SexEnum,
-        bloodTypeId: request.input('bloodTypeId'),
-        medicalHistoryId: request.input('bloodTypeId'),
+        bloodType: request.input('bloodType') as BloodTypeEnum,
         medicines: request.input('medicines'),
         allergies: request.input('allergies'),
+        medicalHistory: request.input('medicalHistory'),
+        doctorId: request.input('doctorId'),
       },
     })
     return response.json(res)
@@ -46,11 +72,13 @@ export default class UsersController {
       data: {
         birthDate: request.input('birthDate'),
         name: request.input('name'),
+        cpf: request.input('cpf'),
         sex: request.input('sex') as SexEnum,
-        bloodTypeId: request.input('bloodTypeId'),
-        medicalHistoryId: request.input('bloodTypeId'),
+        bloodType: request.input('bloodType') as BloodTypeEnum,
         medicines: request.input('medicines'),
         allergies: request.input('allergies'),
+        medicalHistory: request.input('medicalHistory'),
+        doctorId: request.input('doctorId'),
       },
     })
 
