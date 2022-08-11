@@ -1,10 +1,10 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { PrismaClient, Prisma, SexEnum } from '@prisma/client'
+import { PrismaClient, SexEnum } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 export default class UsersController {
-  public async list({ request, response }: HttpContextContract) {
+  public async list({ response }: HttpContextContract) {
     const res = await prisma.user.findMany()
     return response.json(res)
   }

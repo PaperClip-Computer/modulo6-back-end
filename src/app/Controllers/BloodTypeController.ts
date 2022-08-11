@@ -4,7 +4,7 @@ import { PrismaClient, BloodTypeEnum, BloodTypeRhEnum } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default class BloodTypeController {
-  public async list({ request, response }: HttpContextContract) {
+  public async list({ response }: HttpContextContract) {
     const res = await prisma.bloodType.findMany()
     return response.json(res)
   }

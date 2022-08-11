@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default class ExamController {
-  public async list({ request, response }: HttpContextContract) {
+  public async list({ response }: HttpContextContract) {
     const res = await prisma.exam.findMany()
     return response.json(res)
   }
