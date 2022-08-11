@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  service-modulo6:
+    container_name: service-modulo6
+    image: ellian/back-end-modulo6-saude-avancado:v0.0.1
+    restart: always
+    environment:
+      DB_CONNECTION: pg
+      PG_HOST: database-modulo6
+      PG_PORT: 5432
+      PG_USER: postgres
+      PG_PASSWORD: postgres
+      PG_DB_NAME: modulo6
+      DATABASE_URL: "postgresql://postgres:postgres@database-modulo6:5432/modulo6"
+    ports:
+      - '3333:3333'
+  database-modulo6:
+    image: postgres
+    container_name: database-modulo6
+    restart: always
+    volumes:
+      - database-modulo6:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: modulo6
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+
+volumes:
+  database-modulo6:
+    external: false
+networks:
+  modulo6:
+    driver: bridge
+  default:
+    name: modulo6

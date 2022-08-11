@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "ace": "node ace ",
+    "migrate": "npx prisma migrate dev",
+    "migrate:deploy": "npx prisma db push",
+    "prisma:init": "npx prisma generate",
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
