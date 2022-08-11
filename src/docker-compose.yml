@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  app:
+    image: node:lts
+    working_dir: /node/app
+    tty: true
+    command: tail -f /dev/null
+    entrypoint: ./entrypoint.sh
+    volumes:
+      - ./:/node/app
+    ports:
+      - ${PORT:-3333}:3333
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  pg:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB_NAME}
+    ports:
+      - ${PG_PORT:-5432}:5432

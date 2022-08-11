@@ -1,0 +1,15 @@
+{
+  "name": "Modulo6-Backend",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/node/app",
+  "shutdownAction": "stopCompose",
+  "postStartCommand": "./entrypoint.sh",
+  "extensions": [
+    "ms-vsliveshare.vsliveshare",
+    "Prisma.prisma",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml"
+  ]
+}
