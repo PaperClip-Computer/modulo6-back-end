@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default class ExamInfoController {
-  public async list({ request, response }: HttpContextContract) {
+  public async list({ response }: HttpContextContract) {
     const res = await prisma.examInfo.findMany()
     return response.json(res)
   }
@@ -58,7 +58,7 @@ export default class ExamInfoController {
     })
     return response.json(res)
   }
-  
+
   public async delete({ request, response }: HttpContextContract) {
     const { id } = request.params()
 

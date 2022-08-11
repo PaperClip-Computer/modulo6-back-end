@@ -27,5 +27,7 @@ ENV DRIVE_DISK=local
 COPY --chown=node:node ./src/package*.json ./
 RUN npm ci --production
 COPY --chown=node:node --from=build /home/node/app/build .
+COPY --chown=node:node --from=build /home/node/app/prisma .
+RUN npx prisma generate
 EXPOSE $PORT
 CMD [ "dumb-init", "node", "server.js" ]

@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db-modulo6:
+    image: postgres
+    container_name: db-modulo6
+    restart: always
+    volumes:
+      - db-modulo6:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: modulo6
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+
+volumes:
+  db-modulo6:
+    external: false
+networks:
+  modulo6:
+    driver: bridge
+  default:
+    name: modulo6

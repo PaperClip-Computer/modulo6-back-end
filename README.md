@@ -8,13 +8,13 @@
 
 # Tabela de conteúdos
 
-- [Sobre o projeto](#-sobre-o-projeto)
-- [Como executar o projeto](#-como-executar-o-projeto)
+- [Sobre o projeto](#Sobre-o-projeto)
+- [Como executar o projeto](#Como-executar-o-projeto)
   - [Pré-requisitos](#pré-requisitos)
-  - [Rodando o projeto](#-rodando-o-projeto)
+  - [Rodando o projeto](#rodando-o-projeto)
 - [Tecnologias](#-tecnologias)
-- [Autor](#-autor)
-- [Licença](#-licença)
+- [Autor](#autor)
+- [Licença](#licença)
 
 ## 💻 Sobre o projeto
 
@@ -27,21 +27,49 @@ médicos especializados em endocrinologia.
 
 ### Pré-requisitos
 
+- [Docker](https://docs.docker.com/engine/install/)
+
+### 🎲 Rodando o projeto em desenvolvimento
+
+```bash
+# Clone este repositório
+$ git clone git@github.com:PaperClip-Computer/modulo6-back-end.git
+
+# Rode o projeto
+$ docker compose up -d
+```
+
+## 🚀 Como executar o projeto em desenvolvimento
+
+### Pré-requisitos
+
 - [Git](https://git-scm.com/downloads)
 - [Node Js](https://nodejs.org/en/)
+- [PostgreSQL](https://www.postgresql.org/download/)
 
-#### 🎲 Rodando o projeto
+> pode-se utilizar do postgreSQL sobre [Docker](https://docs.docker.com/engine/install/) com [docker-compose](https://docs.docker.com/compose/install/) já disponibilizado pelo projeto
+
+### 🎲 Rodando o projeto
 
 ```bash
 
 # Clone este repositório
 $ git clone git@github.com:PaperClip-Computer/modulo6-back-end.git
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd modulo6-back-end
+# Acesse a pasta src do projeto
+$ cd modulo6-back-end/src
+
+# Rode o banco de dados, caso esteja com docker
+$ docker compose up -d
+
+# Crie o arquivo env com as secrets do projeto seguindo o exemplo
+$ cp .env.example .env
 
 # Instale as dependências
 $ npm install
+
+# Rode as migrations
+$ npm run migrate
 
 # Execute a aplicação
 $ npm run dev
@@ -75,7 +103,7 @@ no próprio código.
  <a><sub><b>Ellian Aragão Dias</b></sub></a>
  <br />
  
-[![Linkedin Badge](https://img.shields.io/badge/-Ellian-blue?style=flat-square&logo=Linkedin&logoColor=white&link=linkedin.com/in/ellian-aragao-dias)](linkedin.com/in/ellian-aragao-dias)
+[![Linkedin Badge](https://img.shields.io/badge/-Ellian_Aragao_Dias-blue?style=flat-square&logo=Linkedin&logoColor=white&link=linkedin.com/in/ellian-aragao-dias)](linkedin.com/in/ellian-aragao-dias)
 [![Gmail Badge](https://img.shields.io/badge/-ellian.aragao@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:ellian.aragao@gmail.com)](mailto:ellian.aragao@gmail.com)
 
 </div>
