@@ -3,8 +3,12 @@ version: '3.8'
 services:
   service-modulo6:
     container_name: service-modulo6
-    image: ellian/back-end-modulo6-saude-avancado:v0.0.1
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     restart: always
+    entrypoint: ./entrypoint.sh
+    command: "node build/server.js"
     environment:
       DB_CONNECTION: pg
       PG_HOST: database-modulo6

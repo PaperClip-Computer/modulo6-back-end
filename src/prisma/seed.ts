@@ -4,25 +4,29 @@ import dummyData from '../dummy_data'
 const prisma = new PrismaClient()
 
 const doctorSeed = async () => {
-  await prisma.doctor.createMany({ data: dummyData.doctorDummy })
+  await prisma.doctor.createMany({ data: dummyData.doctorDummy, skipDuplicates: true })
 }
 
 const userSeed = async () => {
   await prisma.user.createMany({
     data: dummyData.userDummy,
+    skipDuplicates: true,
   })
 }
 
 const examSeed = async () => {
-  await prisma.exam.createMany({ data: dummyData.examDummy })
+  await prisma.exam.createMany({ data: dummyData.examDummy, skipDuplicates: true })
 }
 
 const examSolicitationSeed = async () => {
-  await prisma.examSolicitation.createMany({ data: dummyData.examSolicitationDummy })
+  await prisma.examSolicitation.createMany({
+    data: dummyData.examSolicitationDummy,
+    skipDuplicates: true,
+  })
 }
 
 const examResultSeed = async () => {
-  await prisma.examResult.createMany({ data: dummyData.examResultDummy })
+  await prisma.examResult.createMany({ data: dummyData.examResultDummy, skipDuplicates: true })
 }
 
 async function main() {
