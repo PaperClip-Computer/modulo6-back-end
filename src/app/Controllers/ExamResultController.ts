@@ -28,6 +28,7 @@ export default class ExamController {
         measureDate: request.input('measureDate'),
         resultDate: request.input('resultDate'),
         result: request.input('result'),
+        document: request.input('document'),
         examSolicitationId: request.input('examSolicitationId'),
       },
     })
@@ -45,6 +46,7 @@ export default class ExamController {
         measureDate: request.input('measureDate'),
         resultDate: request.input('resultDate'),
         result: request.input('result'),
+        document: request.input('document'),
         examSolicitationId: request.input('examSolicitationId'),
       },
     })

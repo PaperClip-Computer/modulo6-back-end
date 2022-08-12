@@ -7,7 +7,7 @@ export default class UsersController {
   public async list({ request, response }: HttpContextContract) {
     const { name, cpf } = request.qs()
 
-    const res = prisma.user.findMany({
+    const res = await prisma.user.findMany({
       where: {
         OR: {
           name: {
